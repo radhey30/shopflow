@@ -72,9 +72,9 @@ productSchema.statics.findByCategory = async function (
   return this.find({ category, isActive: true });
 };
 
-const product = mongoose.model<IProductDocument, IProductModel>(
+const Product = mongoose.model<IProductDocument, IProductModel>(
   "Product",
   productSchema,
 );
 
-export default product;
+export default Product;

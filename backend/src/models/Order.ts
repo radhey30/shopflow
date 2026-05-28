@@ -78,6 +78,6 @@ const orderSchema = new mongoose.Schema<IOrderDocument, IOrderModel>(
 
 orderSchema.index({ user: 1, createdAt: -1 });
 
-const order = mongoose.model<IOrderDocument, IOrderModel>("Order", orderSchema);
+const Order = mongoose.model<IOrderDocument, IOrderModel>("Order", orderSchema);
 
-export default order;
+export default Order;
