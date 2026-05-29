@@ -49,7 +49,7 @@ export interface CartItem {
   quantity: number;
 }
 
-export interface Pagination {
+export interface PaginationInfo {
   total: number;
   page: number;
   pages: number;

@@ -1,5 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import useAuthStore from "./store/authStore";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ProductsPage from "./pages/ProductPage";
+import CartPage from "./pages/CartPage";
+import Navbar from "./components/Navbar";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuthStore();
@@ -14,15 +19,16 @@ const AdminRoute = ({ children }: { children: React.ReactNode }) => {
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
-        <Route path="/login" element={<p>Login page</p>} />
-        <Route path="/register" element={<p>Register page</p>} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
         <Route
           path="/"
           element={
             <ProtectedRoute>
-              <p>Product Page</p>
+              <ProductsPage />
             </ProtectedRoute>
           }
         />
@@ -30,7 +36,7 @@ function App() {
           path="/cart"
           element={
             <ProtectedRoute>
-              <p>Cart page</p>
+              <CartPage />
             </ProtectedRoute>
           }
         />
