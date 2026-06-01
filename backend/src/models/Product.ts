@@ -6,7 +6,7 @@ export interface IProduct {
   price: number;
   category: string;
   stock: number;
-  image: string[];
+  images: string[];
   ratings: {
     average: number;
     count: number;
@@ -49,7 +49,7 @@ const productSchema = new mongoose.Schema<IProductDocument, IProductModel>(
       default: 0,
       min: [0, "Stock cannot be negative"],
     },
-    image: [{ type: String }],
+    images: [{ type: String }],
     ratings: {
       average: { type: Number, default: 0, min: 0, max: 5 },
       count: { type: Number, default: 0 },
