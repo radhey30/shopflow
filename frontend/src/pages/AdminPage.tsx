@@ -43,10 +43,14 @@ const MONTH_NAMES = [
 ];
 
 const AdminPage = () => {
-  const { user } = useAuthStore();
+  const { user, isLoading: authLoading } = useAuthStore();
   const [activeTab, setActiveTab] = useState<AdminTab>("analytics");
 
-  if (user?.role !== "admin") return <Navigate to="/" replace />;
+  if (authLoading) {
+    return <div style={styles.center}>Loading...</div>;
+  }
+
+  if (!user || user?.role !== "admin") return <Navigate to="/" replace />;
 
   return (
     <div style={styles.page}>
@@ -83,6 +87,7 @@ const AnalyticsTab = () => {
   const [monthly, setMonthly] = useState<MonthlyData[]>([]);
   const [topProducts, setTopProducts] = useState<TopProduct[]>([]);
   const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -95,6 +100,10 @@ const AnalyticsTab = () => {
         setSummary(summaryRes.data.data);
         setMonthly(monthlyRes.data.data);
         setTopProducts(topRes.data.data);
+      } catch (e) {
+        setError(
+          "Failed to load analytics. Make sure you are logged in as admin",
+        );
       } finally {
         setLoading(false);
       }
@@ -103,6 +112,7 @@ const AnalyticsTab = () => {
   }, []);
 
   if (isLoading) return <div style={styles.center}>Loading analytics...</div>;
+  if (error) return <div style={styles.center}>{error}</div>;
 
   const maxRevenue = Math.max(...monthly.map((m) => m.revenue), 1);
 

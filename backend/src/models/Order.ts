@@ -17,7 +17,7 @@ export interface IOrder {
     street: string;
     city: string;
     state: string;
-    zipcode: string;
+    zipCode: string;
     country: string;
   };
   isPaid: boolean;
@@ -64,7 +64,7 @@ const orderSchema = new mongoose.Schema<IOrderDocument, IOrderModel>(
       street: { type: String, required: true },
       city: { type: String, required: true },
       state: { type: String, required: true },
-      zipcode: { type: String, required: true },
+      zipCode: { type: String, required: true },
       country: { type: String, required: true },
     },
     isPaid: { type: Boolean, default: false },
