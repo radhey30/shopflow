@@ -23,6 +23,9 @@ const Navbar = () => {
               Cart{" "}
               {totalItems > 0 && <span style={styles.badge}>{totalItems}</span>}
             </Link>
+            <Link to="/orders" style={styles.link}>
+              Orders
+            </Link>
             {user?.role === "admin" && (
               <Link to="/admin" style={styles.link}>
                 Admin

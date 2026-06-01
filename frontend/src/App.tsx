@@ -5,6 +5,8 @@ import RegisterPage from "./pages/RegisterPage";
 import ProductsPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import Navbar from "./components/Navbar";
+import OrdersPage from "./pages/OrderPage";
+import AdminPage from "./pages/AdminPage";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuthStore();
@@ -37,6 +39,22 @@ function App() {
           element={
             <ProtectedRoute>
               <CartPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <OrdersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminPage />
             </ProtectedRoute>
           }
         />
